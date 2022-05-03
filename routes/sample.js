@@ -2,8 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  res.json({ message: 'Votre requête a bien été reçue !' });
-});
+const testController = require('../controllers/sample.js');
+
+router.get("/", testController.SendSimpleMsg);
 
 module.exports = router;
