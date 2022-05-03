@@ -58,3 +58,15 @@ npm install bcrypt
 
 ## Installation de cors
 npm install cors
+
+## Installation de body-parser
+npm install body-parser
+
+
+
+
+## Mongo utilisation
+List users in mongo database's collection users:
+> db.users.find()
+{ "_id" : ObjectId("627195c2503708602635b2eb"), "email" : "test@test.fr", "password" : "$2b$10$QWoJqFYThfL2UfWpik2Nz.7rcmLYIICunU.uK/LZt7vi63mpawIxy", "__v" : 0 }
+
