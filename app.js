@@ -1,6 +1,7 @@
 // Import modules
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const authRoutes = require('./routes/authRoutes.js');
 // Variables declaration
 const app = express();
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://piiquante:Eiy4ieMohP@127.0.0.1:27017/piiquante',
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+app.use(cors());
 app.use('/api/auth', authRoutes);
 
 module.exports = app;
