@@ -1,9 +1,10 @@
 // Import modules
 const express = require('express');
-const authController = require('../controllers/authentification.js');
+const authController = require('../controllers/authController.js');
 // Variables declaration
 const router = express.Router();
 
-router.get("/", testController.SendSimpleMsg);
+router.post("/login", authController.login);
+router.post("/signup", authController.signup);
 
 module.exports = router;

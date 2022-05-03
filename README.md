@@ -53,3 +53,8 @@ npm install -g nodemon
 ## Installation de mongoose-unique-validator
 npm install mongoose-unique-validator
 
+## Installation de Bcrypt
+npm install bcrypt
+
+## Installation de cors
+npm install cors
