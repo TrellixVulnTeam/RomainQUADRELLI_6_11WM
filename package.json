@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Propanne/RomainQUADRELLI_6#readme",
   "dependencies": {
-    "express": "^4.18.0"
+    "express": "^4.18.0",
+    "mongoose-unique-validator": "^3.0.0"
   }
 }

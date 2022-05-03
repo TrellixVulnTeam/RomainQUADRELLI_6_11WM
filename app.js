@@ -1,10 +1,10 @@
+// Import modules
 const express = require('express');
-
+const authRoutes = require('./routes/authRoutes.js');
+// Variables declaration
 const app = express();
 
-const stuffRoutes = require('./routes/sample.js');
-
-app.use('/api/auth/login', stuffRoutes);
+app.use('/api/auth/login', authRoutes);
 
 module.exports = app;
 // Utiliser helmet pour gérer la sécurité des requêtes
