@@ -3,8 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes.js');
+const saucesRoutes = require('./routes/saucesRoutes.js');
 const bodyParser = require('body-parser');
-
+const path = require('path');
 // Variables declaration
 const app = express();
 
@@ -19,7 +20,11 @@ mongoose.connect('mongodb://piiquante:Eiy4ieMohP@127.0.0.1:27017/piiquante',
 app.use(cors());
 // Deal with body parsing
 app.use(bodyParser.json());
+// Declare images folder
+app.use('/images', express.static(path.join(__dirname, 'images')));
+// Declare routes
 app.use('/api/auth', authRoutes);
+app.use('/api/sauces', saucesRoutes);
 
 module.exports = app;
 // Utiliser helmet pour gérer la sécurité des requêtes

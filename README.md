@@ -62,7 +62,8 @@ npm install cors
 ## Installation de body-parser
 npm install body-parser
 
-
+## Installation de jsonwebtoken
+npm install jsonwebtoken
 
 
 ## Mongo utilisation
