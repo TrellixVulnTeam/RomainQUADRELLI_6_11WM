@@ -15,6 +15,8 @@ router.get("/:id", authController.verifyToken, saucesController.getSpecificSauce
 router.post("/", multer, authController.verifyToken, saucesController.addSauce);
 // Update specific sauce
 router.put("/:id", multer, authController.verifyToken, saucesController.updateSpecificSauce);
+// Like / Dislike sauce
+router.post("/:id/like", authController.verifyToken, saucesController.likeDislikeSauce);
 // Delete specific sauce
 router.delete("/:id", authController.verifyToken, saucesController.deleteSpecificSauce);
 

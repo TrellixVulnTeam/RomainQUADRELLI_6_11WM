@@ -59,6 +59,66 @@ exports.updateSpecificSauce = (req, res, next) => {
   }
 };
 
+// Like / Dislike one specific sauce based on id in URL
+exports.likeDislikeSauce = (req, res, next) => {
+  // Parse supplied params
+  curUserId = req.body.userId;
+  curLike = req.body.like;
+  // Get current like/dislike of sauce
+  Sauces.findById(req.params.id)
+    .then(sauce => {
+      switch(curLike){
+        // If user liked, following informations depends on like value
+        case 1:
+          // If user already disliked
+          if( sauce.usersDisliked.includes(curUserId) ){
+            sauce.dislikes -= 1;
+            sauce.likes += 1;
+            sauce.usersLiked.push(curUserId);
+            sauce.usersDisliked = sauce.usersDisliked.filter(id => id != curUserId);
+          }
+          // If user didn't like or dislike
+          if( ! sauce.usersDisliked.includes(curUserId) && ! sauce.usersLiked.includes(curUserId)){
+            sauce.likes += 1;
+            sauce.usersLiked.push(curUserId);
+          }
+          break;
+        case 0:
+          // If user already liked
+          if( sauce.usersLiked.includes(curUserId) ){
+            sauce.likes -= 1;
+            sauce.usersLiked = sauce.usersLiked.filter(id => id != curUserId);
+          }
+          // If user already disliked
+          if( sauce.usersLiked.includes(curUserId) ){
+            sauce.dislikes -= 1;
+            sauce.usersDisliked = sauce.usersDisliked.filter(id => id != curUserId);
+          }
+          break;
+        case -1:
+          // If user already liked
+          if( sauce.usersLiked.includes(curUserId) ){
+            sauce.likes -= 1;
+            sauce.dislikes += 1;
+            sauce.usersDisliked.push(curUserId);
+            sauce.usersLiked = sauce.usersLiked.filter(id => id != curUserId);
+          }
+          // If user didn't like or dislike
+          if( ! sauce.usersDisliked.includes(curUserId) && ! sauce.usersLiked.includes(curUserId)){
+            sauce.dislikes += 1;
+            sauce.usersDisliked.push(curUserId);
+          }
+          break;
+      }
+      // Update current sauce with new parameters
+      Sauces.findOneAndUpdate( { _id: req.params.id }, { $set: sauce }, { returnOriginal: false } ).then(sauce => {
+        res.status(201).json({ message: "Sauce mise à jour."});
+      })
+      .catch(error => res.status(500).json({ message: error }));
+    })
+    .catch(error => res.status(500).json({ error }));
+};
+
 // Delete one specific sauce based on id in URL
 exports.deleteSpecificSauce = (req, res, next) => {
   Sauces.deleteOne( { _id: req.params.id } )
