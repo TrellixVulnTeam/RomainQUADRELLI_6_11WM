@@ -34,7 +34,7 @@ exports.login = (req, res, next) => {
             userId: user._id,
             token: jwt.sign(
               { userId: user._id },
-              'RANDOM_TOKEN_SECRET',
+              'zaqu9Oos3Vae0ejae3teiph2i',
               { expiresIn: '24h' }
             )
           });
@@ -42,4 +42,18 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
+};
+
+exports.verifyToken = (req, res, next) => {
+   try {
+       const token = req.headers.authorization.split(' ')[1];
+       const decodedToken = jwt.verify(token, 'zaqu9Oos3Vae0ejae3teiph2i');
+       const userId = decodedToken.userId;
+       req.auth = {
+           userId: userId
+       };
+	next();
+   } catch(error) {
+       res.status(401).json({ error });
+   }
 };

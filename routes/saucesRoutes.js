@@ -1,5 +1,6 @@
 // Import modules
 const express = require('express');
+const authController = require('../controllers/authController.js');
 const saucesController = require('../controllers/saucesController.js');
 const multer = require ('../controllers/multController.js');
 
@@ -7,14 +8,14 @@ const multer = require ('../controllers/multController.js');
 const router = express.Router();
 
 // Get all sauces
-router.get("/", saucesController.getAllSauce);
+router.get("/", authController.verifyToken, saucesController.getAllSauce);
 // Get specific sauce
-router.get("/:id", saucesController.getSpecificSauce);
+router.get("/:id", authController.verifyToken, saucesController.getSpecificSauce);
 // Add sauce
-router.post("/", multer, saucesController.addSauce);
+router.post("/", multer, authController.verifyToken, saucesController.addSauce);
 // Update specific sauce
-router.put("/:id", multer, saucesController.updateSpecificSauce);
+router.put("/:id", multer, authController.verifyToken, saucesController.updateSpecificSauce);
 // Delete specific sauce
-router.delete("/:id", saucesController.deleteSpecificSauce);
+router.delete("/:id", authController.verifyToken, saucesController.deleteSpecificSauce);
 
 module.exports = router;
