@@ -70,12 +70,10 @@ exports.likeDislikeSauce = (req, res, next) => {
       switch(curLike){
         // If user liked, following informations depends on like value
         case 1:
-          // If user already disliked
-          if( sauce.usersDisliked.includes(curUserId) ){
-            sauce.dislikes -= 1;
-            sauce.likes += 1;
-            sauce.usersLiked.push(curUserId);
-            sauce.usersDisliked = sauce.usersDisliked.filter(id => id != curUserId);
+          // If user already liked
+          if( sauce.usersLiked.includes(curUserId) ){
+            sauce.likes -= 1;
+            sauce.usersLiked = sauce.usersLiked.filter(id => id != curUserId);
           }
           // If user didn't like or dislike
           if( ! sauce.usersDisliked.includes(curUserId) && ! sauce.usersLiked.includes(curUserId)){
@@ -90,18 +88,16 @@ exports.likeDislikeSauce = (req, res, next) => {
             sauce.usersLiked = sauce.usersLiked.filter(id => id != curUserId);
           }
           // If user already disliked
-          if( sauce.usersLiked.includes(curUserId) ){
+          if( sauce.usersDisliked.includes(curUserId) ){
             sauce.dislikes -= 1;
             sauce.usersDisliked = sauce.usersDisliked.filter(id => id != curUserId);
           }
           break;
         case -1:
-          // If user already liked
-          if( sauce.usersLiked.includes(curUserId) ){
-            sauce.likes -= 1;
-            sauce.dislikes += 1;
-            sauce.usersDisliked.push(curUserId);
-            sauce.usersLiked = sauce.usersLiked.filter(id => id != curUserId);
+          // If user already disliked
+          if( sauce.usersDisliked.includes(curUserId) ){
+            sauce.dislikes -= 1;
+            sauce.usersDisliked = sauce.usersDisliked.filter(id => id != curUserId);
           }
           // If user didn't like or dislike
           if( ! sauce.usersDisliked.includes(curUserId) && ! sauce.usersLiked.includes(curUserId)){

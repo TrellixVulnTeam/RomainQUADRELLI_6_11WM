@@ -10,7 +10,7 @@ const path = require('path');
 const app = express();
 
 // Mongo connection
-mongoose.connect('mongodb://piiquante:Eiy4ieMohP@127.0.0.1:27017/piiquante',
+mongoose.connect('mongodb+srv://piiquante:Eiy4ieMohP@cluster0.38ai76a.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
