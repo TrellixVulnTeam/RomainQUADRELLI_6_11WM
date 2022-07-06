@@ -22,11 +22,15 @@ Ce projet se compose de deux briques:
 - Backend: NodeJs
 
 Afin de démarrer Angular, il faut effectuer les commandes suivantes depuis la racine du repo:
-		cd dist/hot-takes/
-		ng serve
+```
+cd dist/hot-takes/
+ng serve
+```
 Afin de démarrer NodeJs, il faut effectuer les commandes suivantes depuis la racine du repo:
-		cd api/
-		nodemon server
+```
+cd api/
+nodemon server
+```
 
 Une fois cela effectué, la page Web est accessible en localhost sur le port 4200 (à condition que ce dernier ne soit pas déjà utilisé par une autre application).
 
