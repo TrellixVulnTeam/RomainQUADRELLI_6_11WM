@@ -1,0 +1,31 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "This API is for Piiquante project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Propanne/RomainQUADRELLI_6.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Propanne/RomainQUADRELLI_6/issues"
+  },
+  "homepage": "https://github.com/Propanne/RomainQUADRELLI_6#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose-unique-validator": "^3.1.0",
+    "mult": "^1.1.0",
+    "multer": "^1.4.4",
+    "path": "^0.12.7"
+  }
+}
